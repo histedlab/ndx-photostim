@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'ndx-photostim'
-copyright = '2022, Carl Harris'
-author = 'Carl Harris'
+copyright = '2022, Paul LaFosse, Carl Harris'
+author = 'Paul LaFosse, Carl Harris'
 
 version = '0.1.0'
 release = 'alpha'

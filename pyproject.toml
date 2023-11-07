@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ndx-photostim"
+version = "0.0.1"
+authors = [
+  { name="Paul LaFosse", email="paul.lafosse@nih.gov" },
+  { name="Carl Harris", email="carl.harris@nih.gov" },
+  { name="Adam Thomas", email="adam.thomas@nih.gov" },
+  { name="Mark Histed", email="mark.histed@nih.gov" },
+]
+description = "Holographic photostimulation extension to NWB standard"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/histedlab/ndx-photostim"
+"Bug Tracker" = "https://github.com/histedlab/ndx-photostim/issues"

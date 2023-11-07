@@ -1,0 +1,470 @@
+groups:
+- neurodata_type_def: SpatialLightModulator
+  neurodata_type_inc: Device
+  name: slm
+  doc: Spatial light modulator (SLM) used in the experiment.
+  quantity: '?'
+  attributes:
+  - name: model
+    dtype: text
+    doc: Name of the SLM used in experiment.
+    required: false
+  - name: size
+    dtype: numeric
+    dims:
+    - - width
+      - height
+    - - width
+      - height
+      - depth
+    shape:
+    - - 2
+    - - 3
+    doc: Resolution of SpatialLightModulator (in pixels), formatted as [width, height]
+      or [width, height, depth].
+    required: false
+- neurodata_type_def: Laser
+  neurodata_type_inc: Device
+  name: laser
+  doc: Laser used in the experiment.
+  quantity: '?'
+  attributes:
+  - name: model
+    dtype: text
+    doc: Name of the laser used in experiment.
+    required: false
+  - name: wavelength
+    dtype: numeric
+    doc: Excitation wavelength of stimulation light (nanometers).
+    required: false
+  - name: power
+    dtype: numeric
+    doc: Incident power of stimulation device (in milliwatts).
+    required: false
+  - name: peak_pulse_energy
+    dtype: numeric
+    doc: 'If device is pulsed laser: pulse energy  (in microjoules).'
+    required: false
+  - name: pulse_rate
+    dtype: numeric
+    doc: 'If device is pulsed laser: pulse rate (in kHz) used for stimulation.'
+    required: false
+- neurodata_type_def: PhotostimulationMethod
+  neurodata_type_inc: NWBContainer
+  name: method
+  doc: Methods used to apply patterned photostimulation.
+  attributes:
+  - name: stimulus_method
+    dtype: text
+    doc: Scanning or scanless method for shaping optogenetic light (e.g., diffraction
+      limited points, 3D shot, disks, etc.).
+    required: false
+  - name: sweep_pattern
+    dtype: text
+    doc: Sweeping method, if spatially modulated during stimulation (none, or other).
+    required: false
+  - name: sweep_size
+    dtype: numeric
+    doc: Size or diameter of the scanning sweep pattern (in micrometers) if spatially
+      modulated during stimulation.
+    required: false
+  - name: time_per_sweep
+    dtype: numeric
+    doc: Time to conduct a sweep (in milliseconds) if spatially modulated during stimulation.
+    required: false
+  - name: num_sweeps
+    dtype: numeric
+    doc: Repetition of a sweep pattern for a single stimulation instanceif spatially
+      modulated during stimulation.
+    required: false
+  - name: power_per_target
+    dtype: numeric
+    doc: Power (in milliwatts) applied to each target during patterned photostimulation.
+    required: false
+  - name: opsin
+    dtype: text
+    doc: Opsin used in photostimulation.
+    required: false
+  groups:
+  - neurodata_type_def: SpatialLightModulator
+    neurodata_type_inc: Device
+    name: slm
+    doc: Spatial light modulator (SLM) used in the experiment.
+    quantity: '?'
+    attributes:
+    - name: model
+      dtype: text
+      doc: Name of the SLM used in experiment.
+      required: false
+    - name: size
+      dtype: numeric
+      dims:
+      - - width
+        - height
+      - - width
+        - height
+        - depth
+      shape:
+      - - 2
+      - - 3
+      doc: Resolution of SpatialLightModulator (in pixels), formatted as [width, height]
+        or [width, height, depth].
+      required: false
+  - neurodata_type_def: Laser
+    neurodata_type_inc: Device
+    name: laser
+    doc: Laser used in the experiment.
+    quantity: '?'
+    attributes:
+    - name: model
+      dtype: text
+      doc: Name of the laser used in experiment.
+      required: false
+    - name: wavelength
+      dtype: numeric
+      doc: Excitation wavelength of stimulation light (nanometers).
+      required: false
+    - name: power
+      dtype: numeric
+      doc: Incident power of stimulation device (in milliwatts).
+      required: false
+    - name: peak_pulse_energy
+      dtype: numeric
+      doc: 'If device is pulsed laser: pulse energy  (in microjoules).'
+      required: false
+    - name: pulse_rate
+      dtype: numeric
+      doc: 'If device is pulsed laser: pulse rate (in kHz) used for stimulation.'
+      required: false
+- neurodata_type_def: HolographicPattern
+  neurodata_type_inc: NWBContainer
+  name: pattern
+  doc: Container to store the pattern used in a photostimulation experiment.
+  attributes:
+  - name: dimension
+    dtype: numeric
+    dims:
+    - - width
+      - height
+    - - width
+      - height
+      - depth
+    shape:
+    - - 2
+    - - 3
+    doc: Number of pixels on x, y, (and z) axes. Calculated automatically when ROI
+      is input using 'image_mask_roi.' Required when using 'pixel_roi.'
+    required: false
+  - name: stim_duration
+    dtype: numeric
+    doc: Duration (in sec) the stimulus is presented following onset.
+    required: false
+  - name: roi_size
+    dtype: numeric
+    doc: Size of a single stimulation ROI in pixels. If a scalar is provided, the
+      ROI is assumed to be a circle (for 2D patterns) or cylinder (for 3D patterns)
+      centered at the corresponding coordinates, with diameter 'roi_size'. If 'roi_size'
+      is a two or three dimensional array, the ROI is assumed to be a rectangle or
+      cuboid, with dimensions [width, height] or [width, height, depth]. This parameter
+      is required when using 'pixel_roi'.
+    required: false
+  datasets:
+  - name: image_mask_roi
+    dims:
+    - - num_rows
+      - num_cols
+    - - num_rows
+      - num_cols
+      - depth
+    shape:
+    - - null
+      - null
+    - - null
+      - null
+      - null
+    doc: ROIs designated using a mask of size [width, height] (2D stimulation) or
+      [width, height, depth] (3D stimulation), where for a given pixel a value of
+      1 indicates stimulation, and a value of 0 indicates no stimulation.
+    quantity: '?'
+  - name: pixel_roi
+    shape:
+    - - null
+      - null
+    - - null
+      - null
+      - null
+    doc: ROIs designated as a list specifying the pixel ([x1, y1], [x2, y2], …) or
+      voxel ([x1, y1, z1], [x2, y2, z2], …) of each ROI, where the items in the list
+      are the coordinates of the center of the ROI. The size of each ROI is specified
+      via the required 'roi_size' parameter.
+    quantity: '?'
+  groups:
+  - neurodata_type_def: PhotostimulationMethod
+    neurodata_type_inc: NWBContainer
+    name: method
+    doc: Methods used to apply patterned photostimulation.
+    attributes:
+    - name: stimulus_method
+      dtype: text
+      doc: Scanning or scanless method for shaping optogenetic light (e.g., diffraction
+        limited points, 3D shot, disks, etc.).
+      required: false
+    - name: sweep_pattern
+      dtype: text
+      doc: Sweeping method, if spatially modulated during stimulation (none, or other).
+      required: false
+    - name: sweep_size
+      dtype: numeric
+      doc: Size or diameter of the scanning sweep pattern (in micrometers) if spatially
+        modulated during stimulation.
+      required: false
+    - name: time_per_sweep
+      dtype: numeric
+      doc: Time to conduct a sweep (in milliseconds) if spatially modulated during
+        stimulation.
+      required: false
+    - name: num_sweeps
+      dtype: numeric
+      doc: Repetition of a sweep pattern for a single stimulation instanceif spatially
+        modulated during stimulation.
+      required: false
+    - name: power_per_target
+      dtype: numeric
+      doc: Power (in milliwatts) applied to each target during patterned photostimulation.
+      required: false
+    - name: opsin
+      dtype: text
+      doc: Opsin used in photostimulation.
+      required: false
+    groups:
+    - neurodata_type_def: SpatialLightModulator
+      neurodata_type_inc: Device
+      name: slm
+      doc: Spatial light modulator (SLM) used in the experiment.
+      quantity: '?'
+      attributes:
+      - name: model
+        dtype: text
+        doc: Name of the SLM used in experiment.
+        required: false
+      - name: size
+        dtype: numeric
+        dims:
+        - - width
+          - height
+        - - width
+          - height
+          - depth
+        shape:
+        - - 2
+        - - 3
+        doc: Resolution of SpatialLightModulator (in pixels), formatted as [width,
+          height] or [width, height, depth].
+        required: false
+    - neurodata_type_def: Laser
+      neurodata_type_inc: Device
+      name: laser
+      doc: Laser used in the experiment.
+      quantity: '?'
+      attributes:
+      - name: model
+        dtype: text
+        doc: Name of the laser used in experiment.
+        required: false
+      - name: wavelength
+        dtype: numeric
+        doc: Excitation wavelength of stimulation light (nanometers).
+        required: false
+      - name: power
+        dtype: numeric
+        doc: Incident power of stimulation device (in milliwatts).
+        required: false
+      - name: peak_pulse_energy
+        dtype: numeric
+        doc: 'If device is pulsed laser: pulse energy  (in microjoules).'
+        required: false
+      - name: pulse_rate
+        dtype: numeric
+        doc: 'If device is pulsed laser: pulse rate (in kHz) used for stimulation.'
+        required: false
+- neurodata_type_def: PhotostimulationSeries
+  neurodata_type_inc: TimeSeries
+  doc: 'TimeSeries object for photostimulus presentation. '
+  quantity: '*'
+  attributes:
+  - name: stim_duration
+    dtype: numeric
+    doc: Duration (in sec) the stimulus is presented following onset.
+    required: false
+  - name: format
+    dtype: text
+    doc: Format of data denoting stimulus presentation. Can be either 'interval' or
+      'series'.
+  - name: epoch_length
+    dtype: numeric
+    doc: Length of each epoch (in seconds).
+    required: false
+  groups:
+  - neurodata_type_def: HolographicPattern
+    neurodata_type_inc: NWBContainer
+    name: pattern
+    doc: Container to store the pattern used in a photostimulation experiment.
+    attributes:
+    - name: dimension
+      dtype: numeric
+      dims:
+      - - width
+        - height
+      - - width
+        - height
+        - depth
+      shape:
+      - - 2
+      - - 3
+      doc: Number of pixels on x, y, (and z) axes. Calculated automatically when ROI
+        is input using 'image_mask_roi.' Required when using 'pixel_roi.'
+      required: false
+    - name: stim_duration
+      dtype: numeric
+      doc: Duration (in sec) the stimulus is presented following onset.
+      required: false
+    - name: roi_size
+      dtype: numeric
+      doc: Size of a single stimulation ROI in pixels. If a scalar is provided, the
+        ROI is assumed to be a circle (for 2D patterns) or cylinder (for 3D patterns)
+        centered at the corresponding coordinates, with diameter 'roi_size'. If 'roi_size'
+        is a two or three dimensional array, the ROI is assumed to be a rectangle
+        or cuboid, with dimensions [width, height] or [width, height, depth]. This
+        parameter is required when using 'pixel_roi'.
+      required: false
+    datasets:
+    - name: image_mask_roi
+      dims:
+      - - num_rows
+        - num_cols
+      - - num_rows
+        - num_cols
+        - depth
+      shape:
+      - - null
+        - null
+      - - null
+        - null
+        - null
+      doc: ROIs designated using a mask of size [width, height] (2D stimulation) or
+        [width, height, depth] (3D stimulation), where for a given pixel a value of
+        1 indicates stimulation, and a value of 0 indicates no stimulation.
+      quantity: '?'
+    - name: pixel_roi
+      shape:
+      - - null
+        - null
+      - - null
+        - null
+        - null
+      doc: ROIs designated as a list specifying the pixel ([x1, y1], [x2, y2], …)
+        or voxel ([x1, y1, z1], [x2, y2, z2], …) of each ROI, where the items in the
+        list are the coordinates of the center of the ROI. The size of each ROI is
+        specified via the required 'roi_size' parameter.
+      quantity: '?'
+    groups:
+    - neurodata_type_def: PhotostimulationMethod
+      neurodata_type_inc: NWBContainer
+      name: method
+      doc: Methods used to apply patterned photostimulation.
+      attributes:
+      - name: stimulus_method
+        dtype: text
+        doc: Scanning or scanless method for shaping optogenetic light (e.g., diffraction
+          limited points, 3D shot, disks, etc.).
+        required: false
+      - name: sweep_pattern
+        dtype: text
+        doc: Sweeping method, if spatially modulated during stimulation (none, or
+          other).
+        required: false
+      - name: sweep_size
+        dtype: numeric
+        doc: Size or diameter of the scanning sweep pattern (in micrometers) if spatially
+          modulated during stimulation.
+        required: false
+      - name: time_per_sweep
+        dtype: numeric
+        doc: Time to conduct a sweep (in milliseconds) if spatially modulated during
+          stimulation.
+        required: false
+      - name: num_sweeps
+        dtype: numeric
+        doc: Repetition of a sweep pattern for a single stimulation instanceif spatially
+          modulated during stimulation.
+        required: false
+      - name: power_per_target
+        dtype: numeric
+        doc: Power (in milliwatts) applied to each target during patterned photostimulation.
+        required: false
+      - name: opsin
+        dtype: text
+        doc: Opsin used in photostimulation.
+        required: false
+      groups:
+      - neurodata_type_def: SpatialLightModulator
+        neurodata_type_inc: Device
+        name: slm
+        doc: Spatial light modulator (SLM) used in the experiment.
+        quantity: '?'
+        attributes:
+        - name: model
+          dtype: text
+          doc: Name of the SLM used in experiment.
+          required: false
+        - name: size
+          dtype: numeric
+          dims:
+          - - width
+            - height
+          - - width
+            - height
+            - depth
+          shape:
+          - - 2
+          - - 3
+          doc: Resolution of SpatialLightModulator (in pixels), formatted as [width,
+            height] or [width, height, depth].
+          required: false
+      - neurodata_type_def: Laser
+        neurodata_type_inc: Device
+        name: laser
+        doc: Laser used in the experiment.
+        quantity: '?'
+        attributes:
+        - name: model
+          dtype: text
+          doc: Name of the laser used in experiment.
+          required: false
+        - name: wavelength
+          dtype: numeric
+          doc: Excitation wavelength of stimulation light (nanometers).
+          required: false
+        - name: power
+          dtype: numeric
+          doc: Incident power of stimulation device (in milliwatts).
+          required: false
+        - name: peak_pulse_energy
+          dtype: numeric
+          doc: 'If device is pulsed laser: pulse energy  (in microjoules).'
+          required: false
+        - name: pulse_rate
+          dtype: numeric
+          doc: 'If device is pulsed laser: pulse rate (in kHz) used for stimulation.'
+          required: false
+- neurodata_type_def: PhotostimulationTable
+  neurodata_type_inc: DynamicTable
+  doc: Table to hold all of an experiment's PhotostimulationSeries objects.
+  quantity: '?'
+  datasets:
+  - name: series
+    neurodata_type_inc: VectorData
+    dtype:
+      target_type: PhotostimulationSeries
+      reftype: object
+    doc: PhotostimulationSeries object corresponding to the row.

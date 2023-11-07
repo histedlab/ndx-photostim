@@ -26,8 +26,8 @@ setup_args = {
     'description': 'holographic photostimulation extension to NWB standard',
     'long_description': readme,
     'long_description_content_type': readme_type,
-    'author': 'Carl Harris',
-    'author_email': 'carlwharris1@gmail.com',
+    'author': 'Paul LaFosse, Carl Harris',
+    'author_email': 'paul.lafosse@nih.gov, carlwharris1@gmail.com',
     'url': '',
     'license': 'MIT',
     'install_requires': [

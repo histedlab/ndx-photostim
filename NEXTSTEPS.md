@@ -104,7 +104,7 @@ with information on where to find your NWB extension.
       ```yaml
       name: ndx-photostim
       version: 0.1.0
-      src: https://github.com/carlwharris/ndx-photostim
+      src: https://github.com/histedlab/ndx-photostim
       pip: https://pypi.org/project/ndx-photostim/
       license: MIT
       maintainers: 

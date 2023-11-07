@@ -18,7 +18,7 @@ methods. It includes containers for storing photostimulation-specific device par
 
 ## Background
 
-<img src="./docs/images/Cap1.PNG" width="225em" align="left" style=" margin:0.5em 0.5em 0.5em 0.5em;">
+<img src="https://github.com/histedlab/docs/images/Cap1.PNG" width="225em" align="left" style=" margin:0.5em 0.5em 0.5em 0.5em;">
 State-of-the-art <a href="https://www.nature.com/articles/s41467-017-01031-3">holographic photostimulation methods</a>, used in concert with <a href="https://www.nature.com/articles/nmeth818">two-photon imaging</a>, 
 allow unprecedented 
 control and measurement of cell activity in the living brain. Methods for managing data for two-photon imaging 
@@ -33,7 +33,7 @@ and photostimulation.
 
 To install the extension, first clone the `ndx_photostim` repository to the desired folder using the command
 ```angular2svg
-git clone https://github.com/carlwharris/nwb-photostim.git
+git clone https://github.com/histedlab/ndx-photostim.git
 ```
 Then, to install the requisite python packages and extension, run:
 ```angular2svg
@@ -63,7 +63,7 @@ from ndx_photostim import SpatialLightModulator, Laser, PhotostimulationMethod, 
     PhotostimulationSeries, PhotostimulationTable
 
 # create an example NWB file
-nwbfile = NWBFile('nwb-photostim_example', 'EXAMPLE_ID', datetime.now(tzlocal()))
+nwbfile = NWBFile('ndx-photostim_example', 'EXAMPLE_ID', datetime.now(tzlocal()))
 
 # store the spatial light modulator used
 slm = SpatialLightModulator(name='slm',
@@ -138,7 +138,7 @@ if os.path.exists("example_file.nwb"):
 
 <a href="https://pynwb.readthedocs.io/en/stable/software_process.html#continuous-integration">Unit and integration
 tests</a> are implemented using <a href="https://docs.pytest.org/en/7.2.x/">pytest</a>, and can be run via the command 
-`pytest` from the root of the extension directory (i.e., inside `nwb-photostim/src`). In addition, the
+`pytest` from the root of the extension directory (i.e., inside `ndx-photostim/src`). In addition, the
 `pytest` command will also run a test of the example code above.
 
 ## Documentation

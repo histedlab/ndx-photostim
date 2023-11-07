@@ -10,15 +10,15 @@ def main():
         doc="""holographic photostimulation extension to NWB standard""",
         name="""ndx-photostim""",
         version="""0.1.0""",
-        author=list(map(str.strip, """Carl Harris""".split(','))),
-        contact=list(map(str.strip, """carlwharris1@gmail.com""".split(',')))
+        author=list(map(str.strip, """Paul LaFosse,Carl Harris""".split(','))),
+        contact=list(map(str.strip, """paul.lafosse@nih.gov,carlwharris1@gmail.com""".split(',')))
     )
 
     # as in which namespace they are found.
     # this is similar to specifying the Python modules that need to be imported
     # to use your new data types.
     # all types included or used by the types specified here will also be
-    # included.
+    # included. 
     # ns_builder.include_type('ElectricalSeries', namespace='core')
     ns_builder.include_type("TimeSeries", namespace="core")
     ns_builder.include_type("NWBDataInterface", namespace="core")
