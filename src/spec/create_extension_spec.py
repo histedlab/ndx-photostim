@@ -18,7 +18,7 @@ def main():
     # this is similar to specifying the Python modules that need to be imported
     # to use your new data types.
     # all types included or used by the types specified here will also be
-    # included. 
+    # included.
     # ns_builder.include_type('ElectricalSeries', namespace='core')
     ns_builder.include_type("TimeSeries", namespace="core")
     ns_builder.include_type("NWBDataInterface", namespace="core")
@@ -136,27 +136,35 @@ def main():
             ),
             NWBAttributeSpec(
                 name='num_sweeps',
-                doc=("Repetition of a sweep pattern for a single stimulation instance"
+                doc=("Repetition of a sweep pattern for a single stimulation instance "
                      "if spatially modulated during stimulation."),
                 dtype='numeric',
                 required=False
             ),
             NWBAttributeSpec(
                 name='power_per_target',
-                doc=("Power (in milliwatts) applied to each target during patterned photostimulation."),
+                doc=("Power (in milliWatts) applied to each target during patterned photostimulation."),
                 dtype='numeric',
                 required=False
             ),
             NWBAttributeSpec(
                 name='opsin',
-                doc=("Opsin used in photostimulation."),
+                doc=("Opsin used for photostimulation."),
                 dtype='text',
                 required=False
             ),
         ],
         groups=[
-            slm,
-            lsr
+            NWBGroupSpec(
+				neurodata_type_inc='SpatialLightModulator',
+		        name='slm',
+				doc=("Spatial light modulator (SLM) used in the experiment."),
+			),
+			NWBGroupSpec(
+				neurodata_type_inc='Laser',
+		        name='laser',
+				doc=("Laser used in the experiment."),
+			),
         ]
     )
 
@@ -225,7 +233,11 @@ def main():
             )
         ],
         groups=[
-            psm
+            NWBGroupSpec(
+				neurodata_type_inc='PhotostimulationMethod',
+		        name='method',
+				doc=("Methods used to apply patterned photostimulation."),
+			),
         ]
     )
 
@@ -251,7 +263,11 @@ def main():
             )
         ],
         groups=[
-            hp
+            NWBGroupSpec(
+				neurodata_type_inc='HolographicPattern',
+		        name='pattern',
+                doc=("Container to store the pattern used in a photostimulation experiment."),
+			),
         ]
     )
 
