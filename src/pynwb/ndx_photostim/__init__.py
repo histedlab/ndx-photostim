@@ -24,6 +24,5 @@ load_namespaces(ndx_photostim_specpath)
 # them accessible at the package level
 # SpatialLightModulator = get_class('SpatialLightModulator', 'ndx-photostim')
 
-from . import io as __io  # noqa: E402,F401
 from .photostim import SpatialLightModulator, Laser, PhotostimulationMethod, HolographicPattern, \
                              PhotostimulationSeries, PhotostimulationTable
