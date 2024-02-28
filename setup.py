@@ -22,7 +22,7 @@ except Exception:
 
 setup_args = {
     'name': 'ndx-photostim',
-    'version': '0.0.3',
+    'version': '0.0.4',
     'description': 'holographic photostimulation extension to NWB standard',
     'long_description': readme,
     'long_description_content_type': readme_type,
