@@ -169,7 +169,9 @@ from the home folder. Similar to the specification docs, API documentation is st
 
 ## Credit
 
-Code by Carl Harris and Paul LaFosse (equal contribution). Collaboration between the NIMH's [Data Science and Sharing Team](https://cmn.nimh.nih.gov/dsst) and [Histed Lab](https://www.nimh.nih.gov/research/research-conducted-at-nimh/research-areas/clinics-and-labs/ncb).
+Code by Carl Harris and Paul LaFosse (equal contribution). Collaboration between the NIMH's [Data Science and Sharing Team](https://cmn.nimh.nih.gov/dsst) and [Histed Lab](https://irp.nih.gov/pi/mark-histed).
+
+This work was funded by a seed grant from the [Kavli Foundation](https://www.kavlifoundation.org/).
 
 
 This extension was created using [ndx-template](https://github.com/nwb-extensions/ndx-template).
